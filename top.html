@@ -317,7 +317,6 @@
                 padding: 8px 10px;
                 font-size: 0.9em;
             }
-        }
     </style>
 </head>
 <body>
@@ -335,7 +334,7 @@
             </div>
             <div class="stat-card">
                 <div class="stat-number" id="totalJudges">0</div>
-                <div class="stat-label">Top-4</div>
+                <div class="stat-label">Топ-4</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number" id="correctionFactor">0</div>
@@ -354,7 +353,6 @@
             <div class="filter-buttons">
                 <button class="filter-btn active" data-filter="all">Все</button>
                 <button class="filter-btn" data-filter="top10">Топ-10</button>
-                <button class="filter-btn" data-filter="regular">Обычные участники</button>
             </div>
         </div>
 
@@ -374,7 +372,7 @@
         </table>
     </div>
 
-    <!-- Модальное окно для топ-4 судьи -->
+            <!-- Модальное окно для топ-4 -->
     <div id="judgeModal" class="modal-overlay" style="display:none;">
       <div class="modal-window">
         <span class="modal-close" id="modalClose">&times;</span>
@@ -408,7 +406,7 @@
     .modal-close {
       position: absolute;
       top: 10px; right: 16px;
-      font-size: 2.2em;
+      font-size: 2.2em; 
       color: #888;
       cursor: pointer;
       z-index: 10;
@@ -473,28 +471,28 @@
                 { id: 1, name: "Cол Иодим", song: "На дороге иной - Сол на Марсе (SoM)", score: 3.8, isJudge: false },
                 { id: 2, name: "Отряд Котовскага", song: "Плюшевые поэты - Отряд Котовскага", score: 2.5, isJudge: true, top: [7, 35, 8, 27] },
                 { id: 3, name: "Ивита Полонская", song: "Devil made me do it - sky ivi music", score: 2.4, isJudge: true, top: [28, 21, 39, 17] },
-                { id: 4, name: "Ze Gamer", song: "На дорогах лесных - Ze Game", score: 2.2, isJudge: true, top: [22, 5, 53] },
-                { id: 5, name: "Павел Желибо", song: "Палач (демо версия) - Павел Желибо", score: 1.9, isJudge: true, top: [1, 11, 65] },
+                { id: 4, name: "Ze Gamer", song: "На дорогах лесных - Ze Game", score: 2.2, isJudge: true, top: [22, 5, 2, 53] },
+                { id: 5, name: "Павел Желибо", song: "Палач (демо версия) - Павел Желибо", score: 1.9, isJudge: true, top: [1, 11, 65, 2] },
                 { id: 6, name: "Neldy Music", song: "Сколько лет — сколько зим… - MetaZvuk", score: 1.9, isJudge: true, top: [15, 13, 12, 45] },
-                { id: 7, name: "Надежда Капустина", song: "Цвет ночи - NadinKa", score: 1.8, isJudge: true, top: [13, 5] },
-                { id: 8, name: "Kazladur Brink", song: "Notice.me - Kazladur", score: 1.6, isJudge: true, top: [15, 25, 23] },
-                { id: 9, name: "Татьяна Руденко", song: "Лети - Руденко Т.В. + Рифф", score: 1.6, isJudge: true, top: [20, 63, 22] },
+                { id: 7, name: "Надежда Капустина", song: "Цвет ночи - NadinKa", score: 1.8, isJudge: true, top: [13, 6, 5] },
+                { id: 8, name: "Kazladur Brink", song: "Notice.me - Kazladur", score: 1.6, isJudge: true, top: [15, 2, 25, 23] },
+                { id: 9, name: "Татьяна Руденко", song: "Лети - Руденко Т.В. + Рифф", score: 1.6, isJudge: true, top: [20, 6, 63, 22] },
                 { id: 10, name: "Екатерина Евстратова", song: "Echoes in the Hollow - Kate's world", score: 1.5, isJudge: true, top: [23, 21, 17, 1] },
-                { id: 11, name: "Илья Дорожкин", song: "После жизни - Даркарт", score: 1.5, isJudge: true, top: [4, 5, 30] },
+                { id: 11, name: "Илья Дорожкин", song: "После жизни - Даркарт", score: 1.5, isJudge: true, top: [4, 5, 2, 30] },
                 { id: 12, name: "Dj Neophron", song: "Мы-снова чемпионы (версия 2.0) - DJ NEOPHRON feat BAD SONGS PROJECT", score: 1.4, isJudge: false },
-                { id: 13, name: "Алексей Алмавем", song: "Птицы в небе - Алмавем", score: 1.4, isJudge: true, top: [7, 38, 5] },
-                { id: 14, name: "Оксана Лащилина", song: "Сашка-гармонист - ЛОВiNicE", score: 1.3, isJudge: true, top: [12, 57, 5] },
+                { id: 13, name: "Алексей Алмавем", song: "Птицы в небе - Алмавем", score: 1.4, isJudge: true, top: [6, 7, 38, 5] },
+                { id: 14, name: "Оксана Лащилина", song: "Сашка-гармонист - ЛОВiNicE", score: 1.3, isJudge: true, top: [12, 57, 6, 5] },
                 { id: 15, name: "Sashka Rheanomalia", song: "Hushwires - Rheanomalia", score: 1.2, isJudge: true, top: [1, 4, 19, 39] },
                 { id: 16, name: "Сережа Грякалов", song: "Это Финал - SerGGGG ft. Мышь Band", score: 1.2, isJudge: false },
-                { id: 17, name: "Евгений Александрович", song: "Serpent's Gift - Soulles Machine", score: 1.1, isJudge: true, top: [3, 16, 9] },
+                { id: 17, name: "Евгений Александрович", song: "Serpent's Gift - Soulles Machine", score: 1.1, isJudge: true, top: [3, 2, 16, 9] },
                 { id: 18, name: "Анна Чулкова", song: "Алиса, посоветуй! - Neferet & PASE feat. SunoAI", score: 1.1, isJudge: true, top: [14, 41, 7, 12] },
-                { id: 19, name: "Hito Shniperson", song: "Сделай это со мной - hito", score: 1.1, isJudge: true, top: [50, 32, 68] },
+                { id: 19, name: "Hito Shniperson", song: "Сделай это со мной - hito", score: 1.1, isJudge: true, top: [50, 32, 6, 68] },
                 { id: 20, name: "Алексей Леонтьев", song: "Чужое Солнце (2025) - Turbin", score: 1.1, isJudge: true, top: [7, 45, 54, 1] },
                 { id: 21, name: "Максим Яшин", song: "Enough - FearTheChipper", score: 1.0, isJudge: true, top: [17, 25, 8, 26] },
                 { id: 22, name: "Ольга Гавришина", song: "Ураган - Ол`ka", score: 1.0, isJudge: true, top: [24, 16, 1, 59] },
                 { id: 23, name: "Артур Колесник", song: "Свет дозволенных Рифм - Scary_Man", score: 0.9, isJudge: true, top: [19, 27, 21, 46] },
                 { id: 24, name: "Михаил Дмитриев", song: "Эмодзи - Sona", score: 0.9, isJudge: true, top: [22, 16, 1, 52] },
-                { id: 25, name: "Яан Лодди", song: "Distortion of Memory - Cycle of Desire", score: 0.8, isJudge: true, top: [8, 23, 19] },
+                { id: 25, name: "Яан Лодди", song: "Distortion of Memory - Cycle of Desire", score: 0.8, isJudge: true, top: [8, 2, 23, 19] },
                 { id: 26, name: "Юлия Журженко", song: "Вампир - Lisaviel", score: 0.8, isJudge: false },
                 { id: 27, name: "Павел Гупало", song: "Гречка - наше всё - PoulSoul", score: 0.8, isJudge: false },
                 { id: 28, name: "Бред Питт", song: "Дебил, но любил - N-Morson", score: 0.8, isJudge: true, top: [10, 3, 30, 64] },
@@ -504,7 +502,7 @@
                 { id: 32, name: "Skart Ai Project", song: "Качает вагон - SK-AI projecT", score: 0.7, isJudge: true, top: [1, 14, 38, 40] },
                 { id: 33, name: "Кирилл Генкин", song: "Неоновые Сны - ТехноСфера Вечности", score: 0.7, isJudge: false },
                 { id: 34, name: "Михаил Зиновьев", song: "Тут у моря - Михаил Зиновьев", score: 0.7, isJudge: true, top: [29, 56, 41, 31] },
-                { id: 35, name: "Наталья Дьякова", song: "Чезабретта - Наташка Дьякова & SAI", score: 0.7, isJudge: true, top: [11, 4] },
+                { id: 35, name: "Наталья Дьякова", song: "Чезабретта - Наташка Дьякова & SAI", score: 0.7, isJudge: true, top: [11, 4, 2] },
                 { id: 36, name: "Дмитрий Люсков", song: "Индия - Дмитрий Люсков и Suno v 4.5", score: 0.6, isJudge: true, top: [17, 1, 20, 7] },
                 { id: 37, name: "Ирина Воскобойникова", song: "Сердце моё в огне - iRicha", score: 0.6, isJudge: true, top: [49, 20, 31, 53] },
                 { id: 38, name: "Александр Сулимов", song: "Солнце скрылось - Sulimov project", score: 0.6, isJudge: true, top: [9, 1, 4] },
@@ -525,33 +523,32 @@
                 { id: 53, name: "Коловрат Коло", song: "Гром неба - Коловрат", score: 0.3, isJudge: false },
                 { id: 54, name: "Елена Слободчикова", song: "Если ты уйдешь - Елена Слободчикова", score: 0.3, isJudge: true, top: [48, 33, 14, 12] },
                 { id: 55, name: "Андрей Лабазов", song: "Relic - Lbz", score: 0.3, isJudge: false },
-                { id: 56, name: "Владимир Морозов", song: "Жара - Владимир Морозов", score: 0.3, isJudge: true, top: [34, 31, 25] },
+                { id: 56, name: "Владимир Морозов", song: "Жара - Владимир Морозов", score: 0.3, isJudge: true, top: [34, 2, 31, 25] },
                 { id: 57, name: "Андрей Салов", song: "Интернет - НейроДюха", score: 0.3, isJudge: true, top: [9, 47, 12, 14] },
                 { id: 58, name: "Николай Петров", song: "Транс Вальс - blackpudding", score: 0.3, isJudge: true, top: [15, 10, 39, 44] },
-                { id: 59, name: "Денис Смирнов", song: "40 лет - Ai Kine$hma", score: 0.2, isJudge: true, top: [4, 13, 23] },
+                { id: 59, name: "Денис Смирнов", song: "40 лет - Ai Kine$hma", score: 0.2, isJudge: true, top: [4, 13, 23, 6] },
                 { id: 60, name: "Сергей Миньков", song: "Азовское море зовёт - awaxino", score: 0.2, isJudge: false },
                 { id: 61, name: "Евгений Абрамов", song: "Если бы - Tvoy toy", score: 0.2, isJudge: false },
                 { id: 62, name: "Роберт Астаповский", song: "Завтра - Телефон Доверия", score: 0.2, isJudge: false },
                 { id: 63, name: "Руслан Назарович", song: "Иди - The NeuroSong", score: 0.2, isJudge: true, top: [9, 3, 38, 5] },
                 { id: 64, name: "Валерий Востриков", song: "Миры Хэмингуэя - N-Morson, В.Востриков", score: 0.2, isJudge: true, top: [28, 3, 10, 1] },
-                { id: 65, name: "Арон Авесин", song: "ЭХ, МАРС, ТВОЮ МАТЬ! - Арон Авесин & SUNO AI", score: 0.2, isJudge: true, top: [7, 11, 8] },
+                { id: 65, name: "Арон Авесин", song: "ЭХ, МАРС, ТВОЮ МАТЬ! - Арон Авесин & SUNO AI", score: 0.2, isJudge: true, top: [7, 2, 11, 8] },
                 { id: 66, name: "Sky Vashuk", song: "be-the-light - Sky Vashuk", score: 0.1, isJudge: false },
                 { id: 67, name: "Юрий Петухов", song: "I Won't Say Goodbye - Yury Petukhov", score: 0.1, isJudge: false },
-                { id: 68, name: "Константин Бондаренко (b'n'd)", song: "День Х - b'n'd", score: 0.1, isJudge: true, top: [19, 20] },
+                { id: 68, name: "Константин Бондаренко (b'n'd)", song: "День Х - b'n'd", score: 0.1, isJudge: true, top: [19, 2, 20] },
                 { id: 69, name: "Михаил Жаров", song: "Июньский день - Gor Nagat", score: 0.1, isJudge: false },
-                // Судьи, которые только голосовали (не участвовали как исполнители)
+                // Топ-4, которые только голосовали (не участвовали как исполнители)
                 { id: 70, name: "Тима Сусляев", song: "", score: 0, isJudge: true, top: [16, 5, 1] },
-                { id: 71, name: "Ai Accordions", song: "", score: 0, isJudge: true, top: [14, 52, 12] },
+                { id: 71, name: "Ai Accordions", song: "", score: 0, isJudge: true, top: [6, 14, 52, 12] },
                 { id: 72, name: "Макс Громов", song: "", score: 0, isJudge: true, top: [33, 9, 37, 47] },
                 { id: 73, name: "Виталий Мартюков", song: "", score: 0, isJudge: true, top: [40, 46, 60] },
                 { id: 74, name: "Евгений Мазаков", song: "", score: 0, isJudge: true, top: [37, 25, 59] },
-                { id: 75, name: "Максим Дубровский", song: "", score: 0, isJudge: true, top: [13, 3, 21, 66] },
-                { id: 76, name: "Наталия Фомина", song: "", score: 0, isJudge: true, top: [1, 35, 36, 11] },
-                { id: 77, name: "Михаил Юршевич", song: "", score: 0, isJudge: true, top: [3, 4, 14] },
-                { id: 78, name: "Маруся Хмельная", song: "", score: 0, isJudge: true, top: [26, 10, 36, 64] },
-                { id: 79, name: "Аиболид Творческое Объединение", song: "", score: 0, isJudge: true, top: [1, 24, 31, 5] },
-                { id: 80, name: "Кирилл Панов", song: "", score: 0, isJudge: true, top: [29, 43, 1, 42] },
-                { id: 81, name: "Николай Баркалов", song: "", score: 0, isJudge: true, top: [11, 26, 61, 53] }
+                { id: 75, name: "Максим Дубровский", song: "", score: 0, isJudge: true, top: [1, 35, 36, 11] },
+                { id: 76, name: "Михаил Юршевич", song: "", score: 0, isJudge: true, top: [3, 4, 2, 14] },
+                { id: 77, name: "Маруся Хмельная", song: "", score: 0, isJudge: true, top: [26, 10, 36, 64] },
+                { id: 78, name: "Аиболид Творческое Объединение", song: "", score: 0, isJudge: true, top: [1, 24, 31, 5] },
+                { id: 79, name: "Кирилл Панов", song: "", score: 0, isJudge: true, top: [29, 43, 1, 42] },
+                { id: 80, name: "Николай Баркалов", song: "", score: 0, isJudge: true, top: [11, 26, 61, 53] }
             ],
             totalJudges: 57, // Всего 57 судей
             totalParticipants: 91, // Всего 91 участник
@@ -605,7 +602,7 @@
                     <div class="podium-score">${participant.adjustedScore.toFixed(2)}</div>
                     <div class="podium-name">
                         ${participant.name}
-                        ${participant.isJudge && hasTopParameter() ? '<span class="judge-participant">Top-4</span>' : ''}
+                        ${participant.isJudge && hasTopParameter() ? '<span class="judge-participant">Топ-4</span>' : ''}
                     </div>
                     <div class="podium-song">${participant.song}</div>
                 `;
@@ -619,7 +616,7 @@
             return urlParams.has('top');
         }
 
-        // --- ДОБАВЛЕНО: Popup для топ-4 судьи ---
+        // --- ДОБАВЛЕНО: Popup для топ-4 ---
         function showJudgeModal(judgeName, topIds) {
           // Проверяем, есть ли параметр top в URL
           if (!hasTopParameter()) {
@@ -630,7 +627,7 @@
           const modalContent = document.getElementById('modalContent');
           // Получаем имена и баллы участников по id
           let html = `<h2 style='font-size:1.2em; margin-bottom:10px;'>${judgeName}</h2>`;
-          html += `<div style='font-size:0.98em; color:#888; margin-bottom:8px;'>Топ-4 участников по мнению судьи:</div>`;
+          html += `<div style='font-size:0.98em; color:#888; margin-bottom:8px;'>Топ участников по мнению топ-4 (${topIds.length}):</div>`;
           html += `<table class='top4-table'>`;
           html += `<thead><tr><th class='top4-rank'>№</th><th>Участник</th><th>Песня</th><th class='top4-score'>Балл</th></tr></thead>`;
           html += `<tbody>`;
@@ -672,8 +669,6 @@
                     const judgeParticipants = sortedParticipants.filter(p => p.isJudge);
                     const fourthJudgeScore = judgeParticipants[3] ? judgeParticipants[3].adjustedScore : 0;
                     matchesFilter = p.isJudge && p.adjustedScore >= fourthJudgeScore;
-                } else if (filter === 'regular') {
-                    matchesFilter = !p.isJudge;
                 }
                 
                 const matchesSearch = search === '' || 
@@ -698,7 +693,7 @@
                     <td>
                         <div class="participant-name">
                             ${participant.name}
-                            ${participant.isJudge && hasTopParameter() ? '<span class="judge-participant">Top-4</span>' : ''}
+                            ${participant.isJudge && hasTopParameter() ? '<span class="judge-participant">Топ-4</span>' : ''}
                         </div>
                     </td>
                     <td class="song-title">${participant.song}</td>
