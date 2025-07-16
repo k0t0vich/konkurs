@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Результаты конкурса Neuro Звук 2025 | Фестиваль нейромузыки</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 10px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1em;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .header a {
+            color: #ffd700;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .header a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #495057;
+        }
+
+        .stat-label {
+            color: #6c757d;
+            margin-top: 3px;
+            font-size: 0.9em;
+        }
+
+        .controls {
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #eee;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: #495057;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 20px;
+            background: #6c757d;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover {
+            background: #495057;
+            transform: translateY(-2px);
+        }
+
+        .filter-btn.active {
+            background: #495057;
+        }
+
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .results-table th {
+            background: #495057;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .results-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .results-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .rank {
+            font-weight: bold;
+            color: #495057;
+            text-align: center;
+        }
+
+        .score {
+            font-weight: bold;
+            color: #6c757d;
+        }
+
+        .adjusted-score {
+            font-weight: bold;
+            color: #495057;
+        }
+
+        .judge-participant {
+            background: #6c757d;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.75em;
+            font-weight: normal;
+            margin-left: 8px;
+        }
+
+        .participant-name {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .song-title {
+            color: #666;
+            font-style: italic;
+        }
+
+        .podium {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            padding: 15px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .podium-place {
+            text-align: center;
+            padding: 15px;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .podium-place:nth-child(1) {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            transform: scale(1.05);
+        }
+
+        .podium-place:nth-child(2) {
+            background: #e9ecef;
+            border: 2px solid #6c757d;
+        }
+
+        .podium-place:nth-child(3) {
+            background: #f5e6d3;
+            border: 2px solid #fd7e14;
+        }
+
+        .podium-rank {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .podium-score {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin: 8px 0;
+        }
+
+
+
+        .podium-name {
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .podium-song {
+            font-style: italic;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 5px;
+            }
+            
+            .header h1 {
+                font-size: 1.5em;
+            }
+            
+            .header p {
+                font-size: 0.9em;
+            }
+            
+            .podium {
+                grid-template-columns: 1fr;
+                gap: 10px;
+                padding: 10px;
+            }
+            
+            .podium-place:nth-child(1) {
+                transform: none;
+            }
+            
+            .podium-place {
+                padding: 12px;
+            }
+            
+            .podium-rank {
+                font-size: 2em;
+            }
+            
+            .podium-score {
+                font-size: 1.1em;
+            }
+            
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+                padding: 10px;
+            }
+            
+            .stat-card {
+                padding: 12px;
+            }
+            
+            .stat-number {
+                font-size: 1.3em;
+            }
+            
+
+            
+            .filter-buttons {
+                justify-content: center;
+                gap: 8px;
+            }
+            
+            .filter-btn {
+                padding: 6px 12px;
+                font-size: 0.9em;
+            }
+            
+            .search-box {
+                padding: 10px;
+                font-size: 14px;
+            }
+            
+            .results-table th,
+            .results-table td {
+                padding: 8px 10px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎵 Neuro Звук 2025</h1>
+            <p>Фестиваль нейромузыки | Результаты конкурса</p>
+            <p><a href="https://vk.com/neurochart" target="_blank">📱 Официальная группа ВКонтакте</a></p>
+        </div>
+
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number" id="totalParticipants">0</div>
+                <div class="stat-label">Участников</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="totalJudges">0</div>
+                <div class="stat-label">Top-4</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="correctionFactor">0</div>
+                <div class="stat-label">Поправочный коэффициент</div>
+            </div>
+        </div>
+
+        <div class="podium" id="podium">
+            <!-- Подиум будет заполнен JavaScript -->
+        </div>
+
+
+
+        <div class="controls">
+            <input type="text" class="search-box" id="searchBox" placeholder="Поиск по участнику или песне...">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">Все</button>
+                <button class="filter-btn" data-filter="top10">Топ-10</button>
+                <button class="filter-btn" data-filter="regular">Обычные участники</button>
+            </div>
+        </div>
+
+        <table class="results-table" id="resultsTable">
+            <thead>
+                <tr>
+                    <th>Место</th>
+                    <th>Участник</th>
+                    <th>Песня</th>
+                    <th>Исходный балл</th>
+                    <th>Скорректированный балл</th>
+                </tr>
+            </thead>
+            <tbody id="resultsBody">
+                <!-- Результаты будут заполнены JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Модальное окно для топ-4 судьи -->
+    <div id="judgeModal" class="modal-overlay" style="display:none;">
+      <div class="modal-window">
+        <span class="modal-close" id="modalClose">&times;</span>
+        <div class="modal-content" id="modalContent">
+          <!-- Динамически заполняется -->
+        </div>
+      </div>
+    </div>
+
+    <style>
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.35);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-window {
+      background: #fff;
+      border-radius: 14px;
+      max-width: 95vw;
+      width: 500px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+      padding: 24px 18px 18px 18px;
+      position: relative;
+      animation: modalIn 0.2s;
+    }
+    @keyframes modalIn { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .modal-close {
+      position: absolute;
+      top: 10px; right: 16px;
+      font-size: 2.2em;
+      color: #888;
+      cursor: pointer;
+      z-index: 10;
+      line-height: 1;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+    .modal-close:hover { color: #333; }
+    .modal-content {
+      margin-top: 10px;
+    }
+    @media (max-width: 600px) {
+      .modal-window { width: 98vw; padding: 18px 4vw 14px 4vw; }
+      .modal-close { font-size: 2.7em; top: 4px; right: 10px; }
+    }
+    
+    .top4-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    .top4-table th {
+      background: #f8f9fa;
+      padding: 10px 8px;
+      text-align: left;
+      font-weight: 600;
+      color: #495057;
+      border-bottom: 2px solid #dee2e6;
+    }
+    .top4-table td {
+      padding: 8px;
+      border-bottom: 1px solid #eee;
+    }
+    .top4-table tr:hover {
+      background: #f8f9fa;
+    }
+    .top4-rank {
+      font-weight: bold;
+      color: #764ba2;
+      text-align: center;
+      width: 40px;
+    }
+    .top4-name {
+      font-weight: 500;
+    }
+    .top4-song {
+      color: #6c757d;
+      font-size: 0.9em;
+    }
+    .top4-score {
+      font-weight: 500;
+      color: #495057;
+      text-align: right;
+      width: 60px;
+    }
+    </style>
+
+    <script>
+        // Данные конкурса
+        const contestData = {
+            participants: [
+                { id: 1, name: "Cол Иодим", song: "На дороге иной - Сол на Марсе (SoM)", score: 3.8, isJudge: false },
+                { id: 2, name: "Отряд Котовскага", song: "Плюшевые поэты - Отряд Котовскага", score: 2.5, isJudge: true, top: [7, 35, 8, 27] },
+                { id: 3, name: "Ивита Полонская", song: "Devil made me do it - sky ivi music", score: 2.4, isJudge: true, top: [28, 21, 39, 17] },
+                { id: 4, name: "Ze Gamer", song: "На дорогах лесных - Ze Game", score: 2.2, isJudge: true, top: [22, 5, 53] },
+                { id: 5, name: "Павел Желибо", song: "Палач (демо версия) - Павел Желибо", score: 1.9, isJudge: true, top: [1, 11, 65] },
+                { id: 6, name: "Neldy Music", song: "Сколько лет — сколько зим… - MetaZvuk", score: 1.9, isJudge: true, top: [15, 13, 12, 45] },
+                { id: 7, name: "Надежда Капустина", song: "Цвет ночи - NadinKa", score: 1.8, isJudge: true, top: [13, 5] },
+                { id: 8, name: "Kazladur Brink", song: "Notice.me - Kazladur", score: 1.6, isJudge: true, top: [15, 25, 23] },
+                { id: 9, name: "Татьяна Руденко", song: "Лети - Руденко Т.В. + Рифф", score: 1.6, isJudge: true, top: [20, 63, 22] },
+                { id: 10, name: "Екатерина Евстратова", song: "Echoes in the Hollow - Kate's world", score: 1.5, isJudge: true, top: [23, 21, 17, 1] },
+                { id: 11, name: "Илья Дорожкин", song: "После жизни - Даркарт", score: 1.5, isJudge: true, top: [4, 5, 30] },
+                { id: 12, name: "Dj Neophron", song: "Мы-снова чемпионы (версия 2.0) - DJ NEOPHRON feat BAD SONGS PROJECT", score: 1.4, isJudge: false },
+                { id: 13, name: "Алексей Алмавем", song: "Птицы в небе - Алмавем", score: 1.4, isJudge: true, top: [7, 38, 5] },
+                { id: 14, name: "Оксана Лащилина", song: "Сашка-гармонист - ЛОВiNicE", score: 1.3, isJudge: true, top: [12, 57, 5] },
+                { id: 15, name: "Sashka Rheanomalia", song: "Hushwires - Rheanomalia", score: 1.2, isJudge: true, top: [1, 4, 19, 39] },
+                { id: 16, name: "Сережа Грякалов", song: "Это Финал - SerGGGG ft. Мышь Band", score: 1.2, isJudge: false },
+                { id: 17, name: "Евгений Александрович", song: "Serpent's Gift - Soulles Machine", score: 1.1, isJudge: true, top: [3, 16, 9] },
+                { id: 18, name: "Анна Чулкова", song: "Алиса, посоветуй! - Neferet & PASE feat. SunoAI", score: 1.1, isJudge: true, top: [14, 41, 7, 12] },
+                { id: 19, name: "Hito Shniperson", song: "Сделай это со мной - hito", score: 1.1, isJudge: true, top: [50, 32, 68] },
+                { id: 20, name: "Алексей Леонтьев", song: "Чужое Солнце (2025) - Turbin", score: 1.1, isJudge: true, top: [7, 45, 54, 1] },
+                { id: 21, name: "Максим Яшин", song: "Enough - FearTheChipper", score: 1.0, isJudge: true, top: [17, 25, 8, 26] },
+                { id: 22, name: "Ольга Гавришина", song: "Ураган - Ол`ka", score: 1.0, isJudge: true, top: [24, 16, 1, 59] },
+                { id: 23, name: "Артур Колесник", song: "Свет дозволенных Рифм - Scary_Man", score: 0.9, isJudge: true, top: [19, 27, 21, 46] },
+                { id: 24, name: "Михаил Дмитриев", song: "Эмодзи - Sona", score: 0.9, isJudge: true, top: [22, 16, 1, 52] },
+                { id: 25, name: "Яан Лодди", song: "Distortion of Memory - Cycle of Desire", score: 0.8, isJudge: true, top: [8, 23, 19] },
+                { id: 26, name: "Юлия Журженко", song: "Вампир - Lisaviel", score: 0.8, isJudge: false },
+                { id: 27, name: "Павел Гупало", song: "Гречка - наше всё - PoulSoul", score: 0.8, isJudge: false },
+                { id: 28, name: "Бред Питт", song: "Дебил, но любил - N-Morson", score: 0.8, isJudge: true, top: [10, 3, 30, 64] },
+                { id: 29, name: "Ai Sound Architect Digital Composer", song: "Это вирус - ИNVGEN", score: 0.8, isJudge: true, top: [42, 12, 3, 11] },
+                { id: 30, name: "Николай Постернак", song: "Нарисованный мальчишка - Posternak", score: 0.7, isJudge: false },
+                { id: 31, name: "Sergey Chayka", song: "Возможно - Сергей Чайка", score: 0.7, isJudge: true, top: [32, 34, 4, 35] },
+                { id: 32, name: "Skart Ai Project", song: "Качает вагон - SK-AI projecT", score: 0.7, isJudge: true, top: [1, 14, 38, 40] },
+                { id: 33, name: "Кирилл Генкин", song: "Неоновые Сны - ТехноСфера Вечности", score: 0.7, isJudge: false },
+                { id: 34, name: "Михаил Зиновьев", song: "Тут у моря - Михаил Зиновьев", score: 0.7, isJudge: true, top: [29, 56, 41, 31] },
+                { id: 35, name: "Наталья Дьякова", song: "Чезабретта - Наташка Дьякова & SAI", score: 0.7, isJudge: true, top: [11, 4] },
+                { id: 36, name: "Дмитрий Люсков", song: "Индия - Дмитрий Люсков и Suno v 4.5", score: 0.6, isJudge: true, top: [17, 1, 20, 7] },
+                { id: 37, name: "Ирина Воскобойникова", song: "Сердце моё в огне - iRicha", score: 0.6, isJudge: true, top: [49, 20, 31, 53] },
+                { id: 38, name: "Александр Сулимов", song: "Солнце скрылось - Sulimov project", score: 0.6, isJudge: true, top: [9, 1, 4] },
+                { id: 39, name: "iva Muzhskoi", song: "Toronto Fader - НейроДрейк", score: 0.5, isJudge: true, top: [27, 8, 36, 22] },
+                { id: 40, name: "Константин Леонов-Шуанский", song: "Актриса спускается в партер - AI Илья Недобитый", score: 0.5, isJudge: false },
+                { id: 41, name: "Амалия Жучок", song: "В темноте - ZHUCHOK", score: 0.5, isJudge: true, top: [30, 44, 3, 43] },
+                { id: 42, name: "Андрей Воронин", song: "Разговор с собой (feat. SUNO) - StonedMilkBye", score: 0.5, isJudge: true, top: [8, 58, 62, 20] },
+                { id: 43, name: "Папа Сэм", song: "Echo - Папа Сэм", score: 0.4, isJudge: true, top: [51, 55, 24, 1] },
+                { id: 44, name: "Дима Cавченко", song: "Hold me tight (kpop) - Mane x Luna", score: 0.4, isJudge: false },
+                { id: 45, name: "Юн-Софус Кумле", song: "Инклюз - ОПМ", score: 0.4, isJudge: false },
+                { id: 46, name: "Сова Сумрачная", song: "Лонгин Сотник - Сова Сумрачная AI", score: 0.4, isJudge: false },
+                { id: 47, name: "Yulisse Cobre", song: "Румба Шредингера - Celsa", score: 0.4, isJudge: false },
+                { id: 48, name: "Marty Macflay", song: "Слёзы сбереги - MartyMacflay", score: 0.4, isJudge: false },
+                { id: 49, name: "Виталий Сазонов", song: "Ты не ангел мой (rock version) - Vitaly Sazonov", score: 0.4, isJudge: false },
+                { id: 50, name: "Granny Dances", song: "Упала ночь на землю - Granny dances (+Suno AI)", score: 0.4, isJudge: true, top: [5, 10, 4, 54] },
+                { id: 51, name: "Станислав Земсков", song: "Упс! - Dj Zem", score: 0.4, isJudge: false },
+                { id: 52, name: "Дмитрий Выхин", song: "Бабки любят бабки - Satir-X", score: 0.3, isJudge: false },
+                { id: 53, name: "Коловрат Коло", song: "Гром неба - Коловрат", score: 0.3, isJudge: false },
+                { id: 54, name: "Елена Слободчикова", song: "Если ты уйдешь - Елена Слободчикова", score: 0.3, isJudge: true, top: [48, 33, 14, 12] },
+                { id: 55, name: "Андрей Лабазов", song: "Relic - Lbz", score: 0.3, isJudge: false },
+                { id: 56, name: "Владимир Морозов", song: "Жара - Владимир Морозов", score: 0.3, isJudge: true, top: [34, 31, 25] },
+                { id: 57, name: "Андрей Салов", song: "Интернет - НейроДюха", score: 0.3, isJudge: true, top: [9, 47, 12, 14] },
+                { id: 58, name: "Николай Петров", song: "Транс Вальс - blackpudding", score: 0.3, isJudge: true, top: [15, 10, 39, 44] },
+                { id: 59, name: "Денис Смирнов", song: "40 лет - Ai Kine$hma", score: 0.2, isJudge: true, top: [4, 13, 23] },
+                { id: 60, name: "Сергей Миньков", song: "Азовское море зовёт - awaxino", score: 0.2, isJudge: false },
+                { id: 61, name: "Евгений Абрамов", song: "Если бы - Tvoy toy", score: 0.2, isJudge: false },
+                { id: 62, name: "Роберт Астаповский", song: "Завтра - Телефон Доверия", score: 0.2, isJudge: false },
+                { id: 63, name: "Руслан Назарович", song: "Иди - The NeuroSong", score: 0.2, isJudge: true, top: [9, 3, 38, 5] },
+                { id: 64, name: "Валерий Востриков", song: "Миры Хэмингуэя - N-Morson, В.Востриков", score: 0.2, isJudge: true, top: [28, 3, 10, 1] },
+                { id: 65, name: "Арон Авесин", song: "ЭХ, МАРС, ТВОЮ МАТЬ! - Арон Авесин & SUNO AI", score: 0.2, isJudge: true, top: [7, 11, 8] },
+                { id: 66, name: "Sky Vashuk", song: "be-the-light - Sky Vashuk", score: 0.1, isJudge: false },
+                { id: 67, name: "Юрий Петухов", song: "I Won't Say Goodbye - Yury Petukhov", score: 0.1, isJudge: false },
+                { id: 68, name: "Константин Бондаренко (b'n'd)", song: "День Х - b'n'd", score: 0.1, isJudge: true, top: [19, 20] },
+                { id: 69, name: "Михаил Жаров", song: "Июньский день - Gor Nagat", score: 0.1, isJudge: false },
+                // Судьи, которые только голосовали (не участвовали как исполнители)
+                { id: 70, name: "Тима Сусляев", song: "", score: 0, isJudge: true, top: [16, 5, 1] },
+                { id: 71, name: "Ai Accordions", song: "", score: 0, isJudge: true, top: [14, 52, 12] },
+                { id: 72, name: "Макс Громов", song: "", score: 0, isJudge: true, top: [33, 9, 37, 47] },
+                { id: 73, name: "Виталий Мартюков", song: "", score: 0, isJudge: true, top: [40, 46, 60] },
+                { id: 74, name: "Евгений Мазаков", song: "", score: 0, isJudge: true, top: [37, 25, 59] },
+                { id: 75, name: "Максим Дубровский", song: "", score: 0, isJudge: true, top: [13, 3, 21, 66] },
+                { id: 76, name: "Наталия Фомина", song: "", score: 0, isJudge: true, top: [1, 35, 36, 11] },
+                { id: 77, name: "Михаил Юршевич", song: "", score: 0, isJudge: true, top: [3, 4, 14] },
+                { id: 78, name: "Маруся Хмельная", song: "", score: 0, isJudge: true, top: [26, 10, 36, 64] },
+                { id: 79, name: "Аиболид Творческое Объединение", song: "", score: 0, isJudge: true, top: [1, 24, 31, 5] },
+                { id: 80, name: "Кирилл Панов", song: "", score: 0, isJudge: true, top: [29, 43, 1, 42] },
+                { id: 81, name: "Николай Баркалов", song: "", score: 0, isJudge: true, top: [11, 26, 61, 53] }
+            ],
+            totalJudges: 57, // Всего 57 судей
+            totalParticipants: 91, // Всего 91 участник
+            correctionFactor: 1 + 1/(57-1) // 1 + 1/(N-1) где N = 57 судей = 1.018
+        };
+
+
+
+        // Функция для расчета скорректированного балла
+        function calculateAdjustedScore(participant) {
+            if (participant.isJudge) {
+                return participant.score * contestData.correctionFactor;
+            }
+            return participant.score;
+        }
+
+        // Функция для сортировки участников
+        function sortParticipants() {
+            return contestData.participants
+                .map(p => ({
+                    ...p,
+                    adjustedScore: calculateAdjustedScore(p)
+                }))
+                .sort((a, b) => b.adjustedScore - a.adjustedScore)
+                .map((p, index) => ({
+                    ...p,
+                    rank: index + 1
+                }));
+        }
+
+        // Функция для отображения статистики
+        function updateStats() {
+            document.getElementById('totalParticipants').textContent = contestData.totalParticipants;
+            document.getElementById('totalJudges').textContent = contestData.totalJudges;
+            document.getElementById('correctionFactor').textContent = contestData.correctionFactor.toFixed(3);
+        }
+
+        // Функция для отображения подиума
+        function updatePodium(sortedParticipants) {
+            const podium = document.getElementById('podium');
+            podium.innerHTML = '';
+
+            for (let i = 0; i < 3; i++) {
+                const participant = sortedParticipants[i];
+                if (!participant) continue;
+
+                const podiumPlace = document.createElement('div');
+                podiumPlace.className = 'podium-place';
+                podiumPlace.innerHTML = `
+                    <div class="podium-rank">${i + 1}</div>
+                    <div class="podium-score">${participant.adjustedScore.toFixed(2)}</div>
+                    <div class="podium-name">
+                        ${participant.name}
+                        ${participant.isJudge && hasTopParameter() ? '<span class="judge-participant">Top-4</span>' : ''}
+                    </div>
+                    <div class="podium-song">${participant.song}</div>
+                `;
+                podium.appendChild(podiumPlace);
+            }
+        }
+
+        // Функция для проверки параметра top в URL
+        function hasTopParameter() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.has('top');
+        }
+
+        // --- ДОБАВЛЕНО: Popup для топ-4 судьи ---
+        function showJudgeModal(judgeName, topIds) {
+          // Проверяем, есть ли параметр top в URL
+          if (!hasTopParameter()) {
+            return;
+          }
+          
+          const modal = document.getElementById('judgeModal');
+          const modalContent = document.getElementById('modalContent');
+          // Получаем имена и баллы участников по id
+          let html = `<h2 style='font-size:1.2em; margin-bottom:10px;'>${judgeName}</h2>`;
+          html += `<div style='font-size:0.98em; color:#888; margin-bottom:8px;'>Топ-4 участников по мнению судьи:</div>`;
+          html += `<table class='top4-table'>`;
+          html += `<thead><tr><th class='top4-rank'>№</th><th>Участник</th><th>Песня</th><th class='top4-score'>Балл</th></tr></thead>`;
+          html += `<tbody>`;
+          topIds.forEach((id, idx) => {
+            const p = contestData.participants.find(x => x.id === id);
+            if (p) {
+              const adjustedScore = calculateAdjustedScore(p);
+              html += `<tr><td class='top4-rank'>${idx+1}</td><td class='top4-name'>${p.name}</td><td class='top4-song'>${p.song}</td><td class='top4-score'>${adjustedScore.toFixed(2)}</td></tr>`;
+            }
+          });
+          html += `</tbody></table>`;
+          modalContent.innerHTML = html;
+          modal.style.display = 'flex';
+        }
+        document.getElementById('modalClose').onclick = function() {
+          document.getElementById('judgeModal').style.display = 'none';
+        };
+        document.getElementById('judgeModal').onclick = function(e) {
+          if (e.target === this) this.style.display = 'none';
+        };
+        // --- КОНЕЦ Popup ---
+
+        // Функция для отображения таблицы результатов
+        function updateTable(sortedParticipants, filter = 'all', search = '') {
+            const tbody = document.getElementById('resultsBody');
+            tbody.innerHTML = '';
+
+            const filteredParticipants = sortedParticipants.filter(p => {
+                let matchesFilter = false;
+                
+                if (filter === 'all') {
+                    matchesFilter = true;
+                } else if (filter === 'top10') {
+                    // Находим 10-й балл
+                    const tenthScore = sortedParticipants[9] ? sortedParticipants[9].adjustedScore : 0;
+                    matchesFilter = p.adjustedScore >= tenthScore;
+                } else if (filter === 'judges') {
+                    // Показываем топ-4 судей-участников
+                    const judgeParticipants = sortedParticipants.filter(p => p.isJudge);
+                    const fourthJudgeScore = judgeParticipants[3] ? judgeParticipants[3].adjustedScore : 0;
+                    matchesFilter = p.isJudge && p.adjustedScore >= fourthJudgeScore;
+                } else if (filter === 'regular') {
+                    matchesFilter = !p.isJudge;
+                }
+                
+                const matchesSearch = search === '' || 
+                    p.name.toLowerCase().includes(search.toLowerCase()) ||
+                    p.song.toLowerCase().includes(search.toLowerCase());
+
+                return matchesFilter && matchesSearch;
+            });
+
+            filteredParticipants.forEach(participant => {
+                const row = document.createElement('tr');
+                if (participant.isJudge && hasTopParameter()) {
+                    row.style.cursor = 'pointer';
+                    row.style.backgroundColor = '#f8f9fa';
+                    row.onclick = () => {
+                        const topIds = participant.top || [];
+                        showJudgeModal(participant.name, topIds);
+                    };
+                }
+                row.innerHTML = `
+                    <td class="rank">${participant.rank}</td>
+                    <td>
+                        <div class="participant-name">
+                            ${participant.name}
+                            ${participant.isJudge && hasTopParameter() ? '<span class="judge-participant">Top-4</span>' : ''}
+                        </div>
+                    </td>
+                    <td class="song-title">${participant.song}</td>
+                    <td class="score">${participant.score.toFixed(2)}</td>
+                    <td class="adjusted-score">${participant.adjustedScore.toFixed(2)}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Инициализация страницы
+        function init() {
+            updateStats();
+            
+            const sortedParticipants = sortParticipants();
+            updatePodium(sortedParticipants);
+            updateTable(sortedParticipants);
+
+            // Обработчики событий
+            document.getElementById('searchBox').addEventListener('input', (e) => {
+                const search = e.target.value;
+                const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+                updateTable(sortedParticipants, activeFilter, search);
+            });
+
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    e.target.classList.add('active');
+                    
+                    const filter = e.target.dataset.filter;
+                    const search = document.getElementById('searchBox').value;
+                    updateTable(sortedParticipants, filter, search);
+                });
+            });
+        }
+
+        // Запуск приложения
+        init();
+    </script>
+</body>
+</html> 
